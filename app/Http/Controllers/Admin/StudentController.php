@@ -30,9 +30,10 @@ class StudentController extends Controller
             'address' => 'required',
         ]);
 
+
         Student::create($request->all());
 
-        return redirect()->route('student')->with('success','Student created successfully.');
+        return redirect()->route('student')->with('sukses','student berhasil ditambar');
     }
 
     /**

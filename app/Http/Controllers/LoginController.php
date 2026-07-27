@@ -16,13 +16,15 @@ class LoginController extends Controller
     {
         $credential = $request->validate([
             'email' => ['required', 'email'],
-            'password' => ['required','min:8'],
+            'password' => ['required','min:6'],
             ]);
 
             // auth::Attemp: ngecek email dan password benar atau tidak
             if(Auth::attempt($credential)){
                 $request->session()->regenerate();
-                return redirect()->intended('/dashboard');
+                $user = Auth::user();
+                session(['user_id' => $user->id, 'user_name' => $user->name]);
+                return redirect()->intended('/admin/dashboard');
             }
 
             return back()->withErrors([
