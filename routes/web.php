@@ -20,8 +20,11 @@ Route::resource('/', \App\Http\Controllers\HomeController::class);
 //PREFIX
 Route::get('login', [\App\Http\Controllers\LoginController::class, 'login'])->name('login');
 Route::post('action-login', [\App\Http\Controllers\LoginController::class, 'actionlogin'])->name('action-login');
+
 Route::prefix('admin')->group(function(){
     Route::resource('/dashboard', \App\Http\Controllers\Admin\DashboardController::class);
+    Route::resource('/contact', \App\Http\Controllers\Admin\ContactController::class);
+    Route::resource('/blog', \App\Http\Controllers\Admin\BlogController::class);
 });
 //student
 Route::get('/student', [\App\Http\Controllers\Admin\StudentController::class,'index'])->name('student');
