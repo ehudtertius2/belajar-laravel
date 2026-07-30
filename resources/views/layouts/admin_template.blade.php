@@ -60,13 +60,13 @@
 
             <!-- End of Main Content -->
 
-            <!-- Footer -->
-            @include('_inc.footer')
-            <!-- End of Footer -->
+
 
         </div>
         <!-- End of Content Wrapper -->
-
+            <!-- Footer -->
+                @include('_inc.footer')
+            <!-- End of Footer -->
     </div>
     <!-- End of Page Wrapper -->
 

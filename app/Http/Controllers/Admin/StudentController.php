@@ -13,7 +13,7 @@ class StudentController extends Controller
     public function index()
     {
         //return "hali kami sedang belajar laravel"
-        $students = Student::all();
+        $students = Student::paginate(5);
         $title = "Student Table";
         return view('admin.student', compact('title', 'students'));
     }

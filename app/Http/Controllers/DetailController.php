@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class DetailController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($id)
     {
-        $blogs = Blog::where('is_active', 1)->limit(3)->inRandomOrder()->get();
-        return view('home.index', compact('blogs'));
+        $blogs = Blog::findOrFail($id);
+        return view('home.detail', compact('blogs'));
     }
 
     /**
@@ -34,12 +34,9 @@ class HomeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(blog $blog)
+    public function show(string $id)
     {
-        // var_dump($blogs);
-        // die';
-        // dd()
-        return view('home.detail', compact('blog'));
+        //
     }
 
     /**

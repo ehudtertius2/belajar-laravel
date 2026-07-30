@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Blog;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 
 class BlogController extends Controller
 {
@@ -39,7 +42,7 @@ class BlogController extends Controller
 
         Blog::create([
             'title'=> $request->title,
-            'sub_content'=> $request->sub_content,
+            'sub_content'=> str::slug($request->title),
             'content'=> $request->content,
             'photo'=> $photo,
             'is_active'=> $request->is_active,
@@ -62,7 +65,9 @@ class BlogController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $item = Blog::findOrFail($id);
+        $title = "Edit Blog";
+        return view('admin.blog.update', compact('item', 'title'));
     }
 
     /**
@@ -70,7 +75,35 @@ class BlogController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'sub_content' => 'required',
+            'content' => 'required',
+            'is_active' => 'required|boolean',
+        ]);
+
+
+        $blog = Blog::findOrFail($id);
+        $photo = $blog->photo;
+        if($request->hasFile('photo')) {
+            if($blog->photo) {
+                //hapus file foto lama jika ada
+                Storage::disk('public')->delete($blog->photo);
+            }
+
+            $photo = $request->file('photo')->store('blog','public');
+        }
+
+        $blog->update([
+            'title' => $request->title,
+            'sub_content'=> str::slug($request->title),
+            'content' => $request->content,
+            'photo' => $photo,
+            'is_active' => $request->is_active,
+
+        ]);
+
+        return redirect()->to('admin/blog')->with('success', 'blog update successfully.');
     }
 
     /**
@@ -78,6 +111,12 @@ class BlogController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $blog = Blog::findOrFail($id);
+        if($blog->photo) {
+            // hapus file foto jika ada
+            \Storage::disk('public')->delete($blog->photo);
+        }
+        $blog->delete();
+        return redirect()->to('admin/blog')->with('success', 'blog destroyed successfully.');
     }
 }

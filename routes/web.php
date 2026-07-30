@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 Route::resource('/', \App\Http\Controllers\HomeController::class);
-
+Route::get('/detail/{blog}', [\App\Http\Controllers\HomeController::class, 'show'])->name('home.blog.detail');
+// Route::get('/detail/{id}', [\App\Http\Controllers\DetailController::class, 'index'])->name('detail');
 // GET : HANYA MEMBACA, POST : REQUEST KE DALAM SERVER MENGGUNAKAN FORM, PUT : REQUEST KE DALAM SERVER MENGGUNAKAN FORM PUT DI PERUNTUKAN UNTUK UPDATE DAN DATANYA BANYAK,
 // PATCH : FORM PATCH UNTUK UPDATE DAN DATANYA HANYA SATU, DELETE : REQUEST KE DALAM SERVER MENGGUNAKAN FORM DELETE
 

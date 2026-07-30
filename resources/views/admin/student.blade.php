@@ -4,20 +4,22 @@
 
 @section('content')
 <div class="col-12">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <h1 style="font-family: 'Arial', sans-serif; color: #2c3e50; font-weight: bold; font-size: 32px;"><i class="fa fa-user-secret" aria-hidden="true"></i>
-Student Management</h1>
+                <h1 style="font-family: 'Arial', sans-serif; color: #2c3e50; font-weight: bold; font-size: 32px;">
+                    <i class="fa fa-user-secret" aria-hidden="true"></i>
+                    Student Management</h1>
             </div>
             <div class="col-12">
                 <table id="student" class="table" style="color: #000 !important;">
                     <thead class="bg-white">
                         <tr>
-                            <th>Nama</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Address</th>
+                            <th> No </th>
+                            <th><i class="fa fa-tag" aria-hidden="true"></i> Nama</th>
+                            <th><i class="fa fa-at" aria-hidden="true"></i> Email</th>
+                            <th><i class="fa fa-phone" aria-hidden="true"></i> Phone</th>
+                            <th><i class="fa fa-home" aria-hidden="true"></i> Address</th>
                             <th class="text-center"><a href="#AddPart"
                                 class="btn btn-mini btn-block btn-inverse" data-toggle="modal"
                                 data-target="#AddPart" style="font-family: 'Poppins', sans-serif; font-weight: 600; background: #3498db;
@@ -27,25 +29,31 @@ Student Management</h1>
                     <tbody>
                         @foreach ($students as $item)
                         <tr>
+                            <td>{{($students->currentPage() - 1) * $students->perPage() + $loop->iteration}}</td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->phone }}</td>
                             <td>{{ $item->address }}</td>
                             <td
-                            align="right">
-                                    <a href="#EditPart{{ $item->id }}" data-toggle="modal" data-target="#EditPart{{ $item->id }}"
-                                    class="btn btn-success btn-sm"style="font-family: 'Poppins', sans-serif; font-weight: 500; border-radius: 6px;">
-    <i class="fa-solid fa-pen-to-square"></i> Edit
-</a>
+                            align="right"><a href="#EditPart{{ $item->id }}" data-toggle="modal" data-target="#EditPart{{ $item->id }}"
+                                class="btn btn-success btn-sm"style="font-family: 'Poppins', sans-serif; font-weight: 500; border-radius: 6px;">
+                                    <i class="fa-solid fa-pen-to-square"></i> Edit
+                                </a>
                                 <a href="{{ url('student/hapus/' . $item->id) }}" onclick="return confirm('Apakah Anda yakin akan menghapus data ini?')"
                                     class="btn btn-danger btn-sm"style="font-family: 'Poppins', sans-serif; font-weight: 500; border-radius: 6px;">
-    <i class="fa-solid fa-trash"></i> Hapus
-</a>
+                                    <i class="fa-solid fa-trash"></i> Hapus
+                                </a>
                                 </td>
+
+
 
                         </tr>
                         @endforeach
                     </tbody>
+                    <div class="mt-3">
+
+                        {{$students->links()}}
+                    </div>
                     {{-- Add Part --}}
                     <div class="modal fade" id="AddPart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -62,20 +70,20 @@ Student Management</h1>
                                     <div class="row">
                                     <div class="col-12">
                                     <fieldset>
-                                        <label class="form-label">nama</label>
+                                        <label class="form-label">🪪nama</label>
                                         <input type="text" name="name" class="form-control"
                                         placeholder="Nama Student">
                                     </fieldset>
                                     <fieldset class="form-group">
-                                        <label class="form-label">Email</label>
+                                        <label class="form-label">📧Email</label>
                                         <input type="email" name="email" class="form-control" placeholder="Email">
                                     </fieldset>
                                     <fieldset class="form-group">
-                                        <label class="form-label">Phone</label>
+                                        <label class="form-label">📞Phone</label>
                                         <input type="text" name="phone" class="form-control" placeholder="phone">
                                     </fieldset>
                                     <fieldset class="form-group">
-                                        <label class="form-label">Address</label>
+                                        <label class="form-label">🏠Address</label>
                                         <textarea name="address" class="form-control" placeholder="Address"></textarea>
 
                                     </fieldset>

@@ -3,5 +3,37 @@
 @section('title', $title)
 
 @section('content')
+<div class="col-12">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Dashboard</h1>
+            </div>
+            <div class="col-12">
+                <p>Welcome to the admin dashboard!</p>
+            </div>
+            @if(@session('role') === 'admin')
+            <a href="{{route('student')}}" class="col-md-4">
+                <div class="card text-white text-center bg-primary pt-3 mb-3">
+                    <i class="fa-solid fa-user-graduate fa-3x"></i>
+                    <div class="card-body">
+                        <h5 class="card-title">Student Management</h5>
+                    </div>
+                </div>
+            </a>
+
+            @endif
+            <a href="{{route('blog.index')}}" class="col-md-4">
+                <div class="card text-white text-center bg-primary pt-3 mb-3">
+                    <i class="fa-solid fa-blog fa-3x"></i>
+                    <div class="card-body">
+                        <h5 class="card-title">Blog Management</h5>
+                    </div>
+                </div>
+            </a>
+            
+        </div>
+    </div>
+</div>
 
 @endsection

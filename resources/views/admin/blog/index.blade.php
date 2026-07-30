@@ -34,10 +34,13 @@
                                     <td><img width="100" src="{{asset('storage/'.$x->photo)}}" alt="img"></td>
                                     <td>{{ $x->is_active }}</td>
                                     <td>
-                                        <a href="" class="btn btn-success btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                        <form action="" class="d-inline" method="post">
-                                            <button class="btn btn-danger btn-sm" type="submit">
-                                                Delete
+                                        <a href="{{route('blog.edit', $x->id)}}" class="btn btn-success btn-sm">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i>Edit</a>
+                                        <form action="{{route('blog.destroy', $x->id)}}" style="display: inline;" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Data akan dihancurkan ?')">
+                                                Destroy
                                             </button>
                                         </form>
                                     </td>
