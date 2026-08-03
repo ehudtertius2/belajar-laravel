@@ -21,7 +21,14 @@
                     </div>
                 </div>
             </a>
-
+            <a href="{{route('user.index')}}" class="col-md-4">
+                <div class="card text-white text-center bg-info pt-3 mb-9">
+                    <i class="fa fa-user fa-6x" style="color:rgb(4, 30, 81)""></i>
+                    <div class="card-body">
+                        <h5 class="card-title">User Management</h5>
+                    </div>
+                </div>
+            </a>
             @endif
             <a href="{{route('blog.index')}}" class="col-md-4">
                 <div class="card text-white text-center bg-warning pt-3 mb-9" >
@@ -31,14 +38,15 @@
                     </div>
                 </div>
             </a>
-            <a href="{{route('user')}}" class="col-md-4">
-                <div class="card text-white text-center bg-info pt-3 mb-9">
-                    <i class="fa fa-user fa-6x" style="color:rgb(0, 85, 255)""></i>
+            <a href="{{route('mapel')}}" class="col-md-4">
+                <div class="card text-white text-center bg-primary pt-3 mb-9" >
+                    <i class="fa-solid fa-book fa-6x" style="color: rgb(177, 151, 252);"></i>
                     <div class="card-body">
-                        <h5 class="card-title">User Management</h5>
+                        <h5 class="card-title">Mapel Management</h5>
                     </div>
                 </div>
             </a>
+
 
         </div>
     </div>

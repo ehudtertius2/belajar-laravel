@@ -52,9 +52,16 @@ route::middleware('auth')->group(function(){
     route::get('/admin/student/hapus/{id}', [App\Http\Controllers\Admin\StudentController::class, 'hapus']);
 Route::resource('/user', \App\Http\Controllers\Admin\UserController::class);
 
-    Route::get('admin/user', [\App\Http\Controllers\Admin\UserController::class,'index'])->name('user');
-    Route::post('admin/user/simpan', [\App\Http\Controllers\Admin\UserController::class,'simpan']);
-    Route::post('admin/user/update/{id}', [\App\Http\Controllers\Admin\UserController::class,'update']);
-    Route::get('admin/user/hapus/{id}', [\App\Http\Controllers\Admin\UserController::class,'hapus']);
+    // Route::get('admin/user', [\App\Http\Controllers\Admin\UserController::class,'index'])->name('user');
+    // Route::post('admin/user/simpan', [\App\Http\Controllers\Admin\UserController::class,'simpan']);
+    // Route::post('admin/user/update/{id}', [\App\Http\Controllers\Admin\UserController::class,'update']);
+    // Route::get('admin/user/hapus/{id}', [\App\Http\Controllers\Admin\UserController::class,'hapus']);
+
+Route::resource('/mapel', \App\Http\Controllers\Admin\MapelController::class);
+
+    Route::get('admin/mapel', [\App\Http\Controllers\Admin\MapelController::class,'index'])->name('mapel');
+    Route::post('admin/mapel/simpan', [\App\Http\Controllers\Admin\MapelController::class,'simpan']);
+    Route::post('admin/mapel/update/{id}', [\App\Http\Controllers\Admin\MapelController::class,'update']);
+    Route::get('admin/mapel/hapus/{id}', [\App\Http\Controllers\Admin\MapelController::class,'hapus']);
 });
 
