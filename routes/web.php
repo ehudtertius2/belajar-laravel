@@ -13,7 +13,7 @@ Route::get('/detail/{blog}', [\App\Http\Controllers\HomeController::class, 'show
 // Route::get('pengurangan', [\App\Http\Controllers\BelajaController::class, 'kurang'])->name('pengurangan');
 // Route::get('pembagian', [\App\Http\Controllers\BelajaController::class, 'bagi'])->name('pembagian');
 // Route::get('perkalian', [\App\Http\Controllers\BelajaController::class, 'kali'])->name('perkalian');
-// Route::post('store-tambah', [\App\Http\Controllers\BelajaController::class, 'storetambah'])->name('store-tambah');
+// Route::post('store-tambah', [\App\Http\Controllers\BelajaController::class, 'storetambah'])->name('store-tambah');a
 // Route::post('store-kurang', [\App\Http\Controllers\BelajaController::class, 'storekurang'])->name('store-kurang');
 // Route::post('store-bagi', [\App\Http\Controllers\BelajaController::class, 'storebagi'])->name('store-bagi');
 // Route::post('store-kali', [\App\Http\Controllers\BelajaController::class, 'storekali'])->name('store-kali');
@@ -33,10 +33,13 @@ Route::post('/student/simpan', [\App\Http\Controllers\Admin\StudentController::c
 Route::post('/student/update/{id}', [\App\Http\Controllers\Admin\StudentController::class,'update']);
 Route::get('/student/hapus/{id}', [\App\Http\Controllers\Admin\StudentController::class,'hapus']);
 
+//user
+
+
 //logout
 Route::get('/logout', [App\Http\Controllers\LoginController::class,'logout'])->name('logout');
 //register
-Route::get('register',[\App\Http\Controllers\RegisterController::class, 'register']);
+Route::get('register',[\App\Http\Controllers\RegisterController::class, 'register'])->name('register');
 Route::post('register/action', [\App\Http\Controllers\RegisterController::class, 'actionRegister'])->name('register.action');
 //admin
 route::middleware('auth')->group(function(){
@@ -47,5 +50,11 @@ route::middleware('auth')->group(function(){
     route::post('/admin/student/simpan', [App\Http\Controllers\Admin\StudentController::class, 'simpan']);
     route::post('/admin/student/update/{id}', [App\Http\Controllers\Admin\StudentController::class, 'update']);
     route::get('/admin/student/hapus/{id}', [App\Http\Controllers\Admin\StudentController::class, 'hapus']);
+Route::resource('/user', \App\Http\Controllers\Admin\UserController::class);
+
+    Route::get('admin/user', [\App\Http\Controllers\Admin\UserController::class,'index'])->name('user');
+    Route::post('admin/user/simpan', [\App\Http\Controllers\Admin\UserController::class,'simpan']);
+    Route::post('admin/user/update/{id}', [\App\Http\Controllers\Admin\UserController::class,'update']);
+    Route::get('admin/user/hapus/{id}', [\App\Http\Controllers\Admin\UserController::class,'hapus']);
 });
 

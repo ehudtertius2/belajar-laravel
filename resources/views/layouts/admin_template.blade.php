@@ -20,10 +20,24 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('asset_admin/css/sb-admin-2.min.css')}}" rel="stylesheet">
     <link href="{{asset('asset_admin/css/bootstrap.min.css')}}" rel="stylesheet">
+    {{-- data table  --}}
+
+    <link rel="stylesheet" href="{{asset('asset_admin/css/datatables.min.css')}}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {{-- data table  --}}
+    <script src="{{asset('asset_admin/js/datatables.min.js')}}"></script>
     <script src="{{asset('asset_admin/js/bootstrap.bundle.min.js')}}"></script>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
+    <style>
+        .tblack tr,
+        .tblack th,
+        .tblack td,
+        .tblack tblack {
+            border: #4c00c6 1px solid !important;
+            vertical-align: middle !important
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -112,6 +126,35 @@
     <script src="{{asset('asset_admin/js/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('asset_admin/js/demo/chart-pie-demo.js')}}"></script>
 
+    {{-- optional button libraries  --}}
+    <link href="https://cdn.datatables.net/buttons/4.0.1/css/buttons.dataTables.min.css" rel="stylesheet">
+
+<!-- JSZip for Excel export -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<!-- pdfmake for PDF export -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+
+<!-- Buttons core -->
+<script src="https://cdn.datatables.net/buttons/4.0.1/js/dataTables.buttons.min.js"></script>
+
+<!-- Optional button libraries -->
+<script src="https://cdn.datatables.net/buttons/4.0.1/js/buttons.colVis.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/4.0.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/4.0.1/js/buttons.print.min.js"></script>
+    <script>
+        new DataTable('#student', {
+            fixedHeader: true,
+            responsive: true,
+            layout:{
+                topStart: {
+                    buttons: ['copy', 'excel', 'csv', 'pdf', 'print']
+                },
+                topEnd:'search',
+            }
+        });
+    </script>
 </body>
 
 </html>
